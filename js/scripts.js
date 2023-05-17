@@ -1,27 +1,32 @@
-pokemonList = [
+let pokemonList = [
     {
-        name: bulbasaur,
-        pokemonNumber: 1,
-        type: ['grass', 'poison']
+        name: "Bulbasaur",
+        id: 1,
+        type: ["grass", "poison"],
+        height: 2.33
     },
     {
-        name: charmander,
-        pokemonNumber: 4,
-        type: 'fire'
+        name: "Charmander",
+        id: 4,
+        type: ["fire"],
+        height: 2
     },
     {
-        name: squirtle,
-        pokemonNumber: 7,
-        type: 'water'
+        name: "Squirtle",
+        id: 7,
+        type: ["water"],
+        height: 1.67
     },
     {
-        name: pikachu,
-        pokemonNumber: 25,
-        type: 'electric'
+        name: "Pikachu",
+        id: 25,
+        type: ["electric"],
+        height: 1.33
     },
     {
-        name: eevee,
-        pokemonNumber: 133,
-        type: 'normal'
+        name: "Eevee",
+        id: 133,
+        type: ["normal"],
+        height: 1
     },
 ];
