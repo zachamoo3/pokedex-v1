@@ -30,3 +30,36 @@ let pokemonList = [
         height: 1
     },
 ];
+
+for (let i = 0; i < pokemonList.length; i++) {
+    document.write (
+        "#" + pokemonList[i].id + " " + pokemonList[i].name
+        + "<br>"
+    )
+
+    if (pokemonList[i].type.length > 1) {
+        document.write(
+            `(Types: ${pokemonList[i].type[0]}, ${pokemonList[i].type[1]}) - Wow! This pokemon has two types!`
+            + "<br>"
+        )
+    } else {
+        document.write(
+            `(Type: ${pokemonList[i].type})`
+            + "<br>"
+        )
+    }
+
+    if (pokemonList[i].height <= 1) {
+        document.write(
+            `(Height: ${pokemonList[i].height} ft) - Wow, that's small!`
+            + "<br>"
+        )
+    } else {
+        document.write(
+            `(Height: ${pokemonList[i].height} ft)`
+            + "<br>"
+        )
+    }
+
+    document.write("<br>")
+}
