@@ -1,32 +1,32 @@
 let pokemonList = [ //database of pokemon for the pokedex
     {
-        name: "Bulbasaur",
+        name: 'Bulbasaur',
         id: 1,
-        type: ["grass", "poison"],
+        type: ['grass', 'poison'],
         height: 2.33
     },
     {
-        name: "Charmander",
+        name: 'Charmander',
         id: 4,
-        type: ["fire"],
+        type: ['fire'],
         height: 2.0
     },
     {
-        name: "Squirtle",
+        name: 'Squirtle',
         id: 7,
-        type: ["water"],
+        type: ['water'],
         height: 1.67
     },
     {
-        name: "Pikachu",
+        name: 'Pikachu',
         id: 25,
-        type: ["electric"],
+        type: ['electric'],
         height: 1.33
     },
     {
-        name: "Eevee",
+        name: 'Eevee',
         id: 133,
-        type: ["normal"],
+        type: ['normal'],
         height: 1.0
     },
 ];
@@ -43,14 +43,14 @@ function convertHeight(n) {
         inches = 8;
     }
 
-    return(feet + " ft, " + inches + " in") //return the height in terms of feet and inches
+    return(feet + ' ft, ' + inches + ' in') //return the height in terms of feet and inches
 }
 
 
 for (let i = 0; i < pokemonList.length; i++) {
     document.write (
-        "#" + pokemonList[i].id + " " + pokemonList[i].name //list the pokemon id # and the name
-        + "<br>" //begin new line for type
+        '#' + pokemonList[i].id + ' ' + pokemonList[i].name //list the pokemon id # and the name
+        + '<br>' //begin new line for type
     )
 
     if (pokemonList[i].type.length > 1) { //checking to see if pokemon has more than 1 type
@@ -63,7 +63,7 @@ for (let i = 0; i < pokemonList.length; i++) {
         )
     }
 
-    document.write ("<br>") //begin new line for height
+    document.write ('<br>') //begin new line for height
 
     if (pokemonList[i].height <= 1) { //checking to see if the pokemon is a 1ft tall or smaller
         document.write(
@@ -75,5 +75,5 @@ for (let i = 0; i < pokemonList.length; i++) {
         )
     }
 
-    document.write("<br><br>") //leave space between this iteration and the next
+    document.write('<br><br>') //leave space between this iteration and the next
 }
