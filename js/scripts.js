@@ -3,35 +3,36 @@ let pokemonList = [ //database of pokemon for the pokedex
         name: 'Bulbasaur',
         id: 1,
         type: ['grass', 'poison'],
-        height: 2.33
+        height: 7
     },
     {
         name: 'Charmander',
         id: 4,
         type: ['fire'],
-        height: 2.0
+        height: 6
     },
     {
         name: 'Squirtle',
         id: 7,
         type: ['water'],
-        height: 1.67
+        height: 5
     },
     {
         name: 'Pikachu',
         id: 25,
         type: ['electric'],
-        height: 1.33
+        height: 4
     },
     {
         name: 'Eevee',
         id: 133,
         type: ['normal'],
-        height: 1.0
+        height: 3
     },
 ];
 
 function convertHeight(n) {
+    n = n / 3;
     let feet = Math.floor(n); //targeting the integer.  Using Math.floor(n) to round down because it should always be a positive number
     let inches = n - feet; //targeting the remainder.  The only options for remainder are 1/3, 2/3, or 0
 
