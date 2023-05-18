@@ -66,7 +66,7 @@ for (let i = 0; i < pokemonList.length; i++) {
 
     document.write ('<br>') //begin new line for height
 
-    if (pokemonList[i].height <= 1) { //checking to see if the pokemon is a 1ft tall or smaller
+    if (pokemonList[i].height <= 3) { //checking to see if the pokemon is a 1ft tall or smaller
         document.write(
             `(Height: ${convertHeight(pokemonList[i].height)}) - Wow, that's small!`
         )
