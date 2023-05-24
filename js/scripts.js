@@ -31,7 +31,6 @@ let pokemonRepository = (function () {
             height: 3
         },
     ];
-}) ();
 
     function convertHeight(n) {
         n = n / 3;
@@ -80,3 +79,4 @@ let pokemonRepository = (function () {
 
         document.write ('<br><br>') //leave space between this iteration and the next
     }
+}) ();
