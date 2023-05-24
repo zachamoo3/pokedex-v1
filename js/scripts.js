@@ -48,35 +48,36 @@ let pokemonRepository = (function () {
         return (feet + ' ft, ' + inches + ' in') //return the height in terms of feet and inches
     }
 
-
-    for (let i = 0; i < pokemonList.length; i++) {
-        document.write (
-            '#' + pokemonList[i].id + ' ' + pokemonList[i].name //list the pokemon id # and the name
+    function listPokemon(pokemon) { //defining the function listPokemon to list the details of 'pokemon'
+        document.write(
+            '#' + pokemon.id + ' ' + pokemon.name //list the pokemon id # and the name
             + '<br>' //begin new line for type
         )
 
-        if (pokemonList[i].type.length > 1) { //checking to see if pokemon has more than 1 type
-            document.write (
-                `(Types: ${pokemonList[i].type[0]}, ${pokemonList[i].type[1]}) - Wow! This pokemon has two types!`
+        if (pokemon.type.length > 1) { //checking to see if pokemon has more than 1 type
+            document.write(
+                `(Types: ${pokemon.type[0]}, ${pokemon.type[1]}) - Wow! This pokemon has two types!`
             )
         } else { //default: if it only has 1 type
-            document.write (
-                `(Type: ${pokemonList[i].type})`
+            document.write(
+                `(Type: ${pokemon.type})`
             )
         }
 
-        document.write ('<br>') //begin new line for height
+        document.write('<br>') //begin new line for height
 
-        if (pokemonList[i].height <= 3) { //checking to see if the pokemon is a 1ft tall or smaller
-            document.write (
-                `(Height: ${convertHeight(pokemonList[i].height)}) - Wow, that's small!`
+        if (pokemon.height <= 3) { //checking to see if the pokemon is a 1ft tall or smaller
+            document.write(
+                `(Height: ${convertHeight(pokemon.height)}) - Wow, that's small!`
             )
         } else { //default: if it is taller than 1 ft 0 in
-            document.write (
-                `(Height: ${convertHeight(pokemonList[i].height)})`
+            document.write(
+                `(Height: ${convertHeight(pokemon.height)})`
             )
         }
 
-        document.write ('<br><br>') //leave space between this iteration and the next
+        document.write('<br><br>') //leave space between this iteration and the next
     }
-}) ();
+
+    pokemonList.forEach(listPokemon); //running the listPokemon function for each pokemon in pokemonList
+})();
