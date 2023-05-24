@@ -1,35 +1,50 @@
-let pokemonList = [ //database of pokemon for the pokedex
-    {
-        name: 'Bulbasaur',
-        id: 1,
-        type: ['grass', 'poison'],
-        height: 7
-    },
-    {
-        name: 'Charmander',
-        id: 4,
-        type: ['fire'],
-        height: 6
-    },
-    {
-        name: 'Squirtle',
-        id: 7,
-        type: ['water'],
-        height: 5
-    },
-    {
-        name: 'Pikachu',
-        id: 25,
-        type: ['electric'],
-        height: 4
-    },
-    {
-        name: 'Eevee',
-        id: 133,
-        type: ['normal'],
-        height: 3
-    },
-];
+let pokemonRepository = (function () { //wrapping the pokemonList inside of an IIFE (Immediately Invoked Function Expression)
+    let pokemonList = [ //database of pokemon for the pokedex
+        {
+            name: 'Bulbasaur',
+            id: 1,
+            type: ['grass', 'poison'],
+            height: 7
+        },
+        {
+            name: 'Charmander',
+            id: 4,
+            type: ['fire'],
+            height: 6
+        },
+        {
+            name: 'Squirtle',
+            id: 7,
+            type: ['water'],
+            height: 5
+        },
+        {
+            name: 'Pikachu',
+            id: 25,
+            type: ['electric'],
+            height: 4
+        },
+        {
+            name: 'Eevee',
+            id: 133,
+            type: ['normal'],
+            height: 3
+        },
+    ];
+
+    function add (pokemon) {
+       pokemonList.push(pokemon);
+    }
+
+    function getAll() {
+        return pokemonList;
+    }
+
+    return { //returning the add & getAll functions so that they may be used outside the IIFE to access the pokemonList
+        add: add,
+        getAll: getAll
+    }
+}) ();
 
 function convertHeight(n) {
     n = n / 3;
@@ -78,4 +93,4 @@ function listPokemon(pokemon) { //defining the function listPokemon to list the 
     document.write('<br><br>') //leave space between this iteration and the next
 }
 
-pokemonList.forEach(listPokemon); //running the listPokemon function for each pokemon in pokemonList
+pokemonRepository.getAll().forEach(listPokemon); //running the listPokemon function for each pokemon returnedby pokemonRepository.getAll()
