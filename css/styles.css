@@ -1,0 +1,92 @@
+/*
+Color Palette:
+Font/Text Color: (White) #F9DBBB, rgb(249, 219, 187)
+Heading/Accent Color: (Blue) #4E6E81, rgb(78, 110, 129)
+Other/Screen Color: (Black) #2E3840, rgb(46, 56, 64)
+Background Color: (Red) #FF0303, rgb(255, 3, 3)
+
+Fonts:
+Body Text: Roboto Mono Regular 400
+Heading Text: Roboto Mono Bold 700
+*/
+
+
+
+/* Universal & Element Styles */
+    :root {
+        --text-color: rgba(249, 219, 187, 1);
+        --accent-color: rgba(78, 110, 129, 1);
+        --screen-color: rgba(46, 56, 64, 1);
+        --background-color: rgba(255, 3, 3, 1);
+    }
+
+    h1 {
+        font-family: 'Roboto Mono', monospace;
+        font-size: 30px;
+        font-weight: 700;
+        color: rgba(249, 219, 187, 1);
+        text-shadow: 3px 3px rgba(78, 110, 129, 1);
+        text-align: left;
+    }
+
+    div.pokedex {
+        background: rgba(255, 3, 3, 1);
+        border: 5px solid rgba(78, 110, 129, 1);
+        max-width: 425px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: auto;
+    }
+
+
+
+/* Header Section Styles */
+    .pokedex__header {
+        display: flex;
+        width: 95%;
+        justify-content: space-between;
+    }
+
+    /* .pokedex__header--title {
+        
+    } */
+
+    .pokedex__header--search {
+        align-self: center;
+    }
+
+    .search-logo {
+        fill: rgba(78, 110, 129, 1);
+        width: 40px;
+        height: 40px;
+    }
+
+
+
+/* Main Section Styles */
+    .pokedex__main {
+        width: 90%;
+        margin: 0 0 20px 0;
+    }
+
+    .pokemon-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+
+    .list-button {
+        font-family: 'Roboto Mono', monospace;
+        font-size: 16px;
+        font-weight: 400;
+        background-color: rgba(46, 56, 64, 1);
+        color: rgba(249, 219, 187, 1);
+        border: 2px solid rgba(78, 110, 129, 1);
+        width: 100%;
+        height: auto;
+        padding: 5px 20px;
+        margin: 5px 0;
+        text-align: left;
+    }
