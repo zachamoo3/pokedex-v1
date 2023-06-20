@@ -32,29 +32,38 @@ let pokemonRepository = (function () { //wrapping the pokemonList inside of an I
         },
     ];
 
-    function add (pokemon) {
+    function add (pokemon) { //used to add new pokemon to the pokedex
        pokedex.push(pokemon);
     }
 
-    function getAll() {
+    function getAll() { //used to return all pokemon given in the pokedex
         return pokedex;
     }
 
-    function addListItem (pokemon) {
+    function addListItem (pokemon) { //used to add a pokemon to the unordered list in HTML
         let pokemonList = document.querySelector('.pokemon-list');
         let listItem = document.createElement('li');
         let button = document.createElement('button');
+
         button.innerText = `#${pokemon.id} ${pokemon.name}`;
         button.classList.add('list-button');
+        button.addEventListener('click', function (pokemon) {
+            showDetails(pokemon);
+        })
     
         listItem.appendChild(button);
         pokemonList.appendChild(listItem);
     }
 
-    return { //returning the add & getAll functions so that they may be used outside the IIFE to access the pokemonList
+    function showDetails (pokemon) { //used to log that the buttons are working
+        console.log(pokemon.name);
+    }
+
+    return { //returning functions so that they may be used outside the IIFE to access the pokemonList
         add: add,
         getAll: getAll,
-        addListItem: addListItem
+        addListItem: addListItem,
+        showDetails: showDetails
     }
 }) ();
 
@@ -69,6 +78,9 @@ pokemonRepository.getAll().forEach( function (pokemon) {
 
 
 
+
+
+// The following is old code that I am saving for reference while the project is still in development
 // function convertHeight(n) {
 //     n = n / 3;
 //     let feet = Math.floor(n); //targeting the integer.  Using Math.floor(n) to round down because it should always be a positive number
