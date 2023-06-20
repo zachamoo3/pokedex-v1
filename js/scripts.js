@@ -47,7 +47,7 @@ let pokemonRepository = (function () { //wrapping the pokemonList inside of an I
 
         button.innerText = `#${pokemon.id} ${pokemon.name}`;
         button.classList.add('list-button');
-        button.addEventListener('click', function (pokemon) {
+        button.addEventListener('click', function () {
             showDetails(pokemon);
         })
     
