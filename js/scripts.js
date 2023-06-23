@@ -1,43 +1,70 @@
 let pokemonRepository = (function () { //wrapping the pokemonList inside of an IIFE (Immediately Invoked Function Expression)
-    let pokedex = [ //database of pokemon for the pokedex
-        {
-            name: 'Bulbasaur',
-            id: 1,
-            type: ['grass', 'poison'],
-            height: 7
-        },
-        {
-            name: 'Charmander',
-            id: 4,
-            type: ['fire'],
-            height: 6
-        },
-        {
-            name: 'Squirtle',
-            id: 7,
-            type: ['water'],
-            height: 5
-        },
-        {
-            name: 'Pikachu',
-            id: 25,
-            type: ['electric'],
-            height: 4
-        },
-        {
-            name: 'Eevee',
-            id: 133,
-            type: ['normal'],
-            height: 3
-        },
-    ];
+    let pokemonList = []
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=151'
 
-    function add (pokemon) { //used to add new pokemon to the pokedex
-       pokedex.push(pokemon);
+    function add (pokemon) { //used to add be able to add new pokemon to the pokemonList
+        if (
+            typeof pokemon === 'object' && //pokemon must be an object with at least a name, detailsUrl, and id
+            'name' in pokemon &&
+            'detailsUrl' in pokemon &&
+            'id' in pokemon
+        ) {
+            pokemonList.push(pokemon);
+        } else {
+            console.log('pokemon cannot be pushed to pokemonList')
+        }
     }
 
-    function getAll() { //used to return all pokemon given in the pokedex
-        return pokedex;
+    function loadList() { //used to fetch data from the apiUrl and add them to the pokemonList
+        return fetch(apiUrl).then(function (response) {
+            return response.json();
+        }).then(function (json) {
+            let count = 1;
+            json.results.forEach(function (item) {
+                let pokemon = {
+                    name: item.name,
+                    detailsUrl: item.url,
+                    id: count
+                };
+                add(pokemon);
+                count = count+1
+            })
+        }).catch(function (e) {
+            console.error(e);
+        })
+    }
+
+    function getAll() { //used to return all pokemon given in the pokemonList
+        return pokemonList;
+    }
+
+    function loadDetails (item) { //used to load more data on each individual pokemon
+        let url = item.detailsUrl;
+        return fetch(url).then(function (response) {
+            return response.json();
+        }).then(function (details) {
+            item.imageUrl = details.sprites.front_default;
+            item.id = details.id;
+
+            item.height = details.height;
+            item.weight = details.weight;
+            
+            item.types = details.types;
+            if (details.types.length === 2) {
+                item.types[0] = details.types[0].type.name;
+                item.types[1] = details.types[1].type.name;
+            } else {
+                item.types[0] = details.types[0].type.name;
+            }
+        }).catch(function (e) {
+            console.error(e);
+        })
+    }
+
+    function showDetails (pokemon) { //used to log that the buttons are working
+        loadDetails(pokemon).then(function () {
+            console.log(pokemon);
+        });
     }
 
     function addListItem (pokemon) { //used to add a pokemon to the unordered list in HTML
@@ -45,7 +72,7 @@ let pokemonRepository = (function () { //wrapping the pokemonList inside of an I
         let listItem = document.createElement('li');
         let button = document.createElement('button');
 
-        button.innerText = `#${pokemon.id} ${pokemon.name}`;
+        button.innerText = `#${pokemon.id} ${pokemon.name.charAt(0).toUpperCase()}${pokemon.name.slice(1)}`;
         button.classList.add('list-button');
         button.addEventListener('click', function () {
             showDetails(pokemon);
@@ -55,21 +82,22 @@ let pokemonRepository = (function () { //wrapping the pokemonList inside of an I
         pokemonList.appendChild(listItem);
     }
 
-    function showDetails (pokemon) { //used to log that the buttons are working
-        console.log(pokemon.name);
-    }
-
     return { //returning functions so that they may be used outside the IIFE to access the pokemonList
         add: add,
+        loadList: loadList,
         getAll: getAll,
-        addListItem: addListItem,
-        showDetails: showDetails
+        loadDetails: loadDetails,
+        showDetails: showDetails,
+        addListItem: addListItem
     }
 }) ();
 
-pokemonRepository.getAll().forEach( function (pokemon) {
-    pokemonRepository.addListItem(pokemon);
-});
+pokemonRepository.loadList().then(function () {
+    pokemonRepository.getAll().forEach( function (pokemon) {
+        pokemonRepository.addListItem(pokemon);
+    });
+})
+
 
 
 
@@ -81,6 +109,41 @@ pokemonRepository.getAll().forEach( function (pokemon) {
 
 
 // The following is old code that I am saving for reference while the project is still in development
+// let pokedex = [ //database of pokemon for the pokedex
+// {
+//     name: 'Bulbasaur',
+//     id: 1,
+//     type: ['grass', 'poison'],
+//     height: 7
+// },
+// {
+//     name: 'Charmander',
+//     id: 4,
+//     type: ['fire'],
+//     height: 6
+// },
+// {
+//     name: 'Squirtle',
+//     id: 7,
+//     type: ['water'],
+//     height: 5
+// },
+// {
+//     name: 'Pikachu',
+//     id: 25,
+//     type: ['electric'],
+//     height: 4
+// },
+// {
+//     name: 'Eevee',
+//     id: 133,
+//     type: ['normal'],
+//     height: 3
+// },
+// ];
+
+
+
 // function convertHeight(n) {
 //     n = n / 3;
 //     let feet = Math.floor(n); //targeting the integer.  Using Math.floor(n) to round down because it should always be a positive number
