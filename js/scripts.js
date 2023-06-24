@@ -1,16 +1,14 @@
 let pokemonRepository = (function () { //wrapping the pokemonList inside of an IIFE (Immediately Invoked Function Expression)
     let pokemonList = []
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=151'
-    let loadTime = 'Rendered';
-
 
     function showLoadingMessage() { //used to notify the user that data is being loaded/fetched
         console.log('Loading...');
-        console.time(loadTime);
+        console.time('Rendered');
     }
 
     function hideLoadingMessage() { //used to hide the loading notification
-        console.timeEnd(loadTime);
+        console.timeEnd('Rendered');
     }
 
     function add (pokemon) { //used to add be able to add new pokemon to the pokemonList
