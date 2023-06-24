@@ -1,6 +1,18 @@
 let pokemonRepository = (function () { //wrapping the pokemonList inside of an IIFE (Immediately Invoked Function Expression)
     let pokemonList = []
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=151'
+    let loadTime = 'Load Time';
+
+
+    function showLoadingMessage() { //used to notify the user that data is being loaded/fetched
+        console.log('Now loading...');
+        console.time(loadTime);
+    }
+
+    function hideLoadingMessage() { //used to hide the loading notification
+        console.timeEnd(loadTime);
+        console.log('Finished loading.');
+    }
 
     function add (pokemon) { //used to add be able to add new pokemon to the pokemonList
         if (
@@ -16,6 +28,8 @@ let pokemonRepository = (function () { //wrapping the pokemonList inside of an I
     }
 
     function loadList() { //used to fetch data from the apiUrl and add them to the pokemonList
+        showLoadingMessage();
+
         return fetch(apiUrl).then(function (response) {
             return response.json();
         }).then(function (json) {
@@ -29,7 +43,9 @@ let pokemonRepository = (function () { //wrapping the pokemonList inside of an I
                 add(pokemon);
                 count = count+1
             })
+            hideLoadingMessage();
         }).catch(function (e) {
+            hideLoadingMessage();
             console.error(e);
         })
     }
@@ -39,6 +55,7 @@ let pokemonRepository = (function () { //wrapping the pokemonList inside of an I
     }
 
     function loadDetails (item) { //used to load more data on each individual pokemon
+        showLoadingMessage();
         let url = item.detailsUrl;
         return fetch(url).then(function (response) {
             return response.json();
@@ -56,7 +73,10 @@ let pokemonRepository = (function () { //wrapping the pokemonList inside of an I
             } else {
                 item.types[0] = details.types[0].type.name;
             }
+
+            hideLoadingMessage();
         }).catch(function (e) {
+            hideLoadingMessage();
             console.error(e);
         })
     }
@@ -83,6 +103,8 @@ let pokemonRepository = (function () { //wrapping the pokemonList inside of an I
     }
 
     return { //returning functions so that they may be used outside the IIFE to access the pokemonList
+        showLoadingMessage: showLoadingMessage,
+        hideLoadingMessage: hideLoadingMessage,
         add: add,
         loadList: loadList,
         getAll: getAll,
@@ -96,7 +118,7 @@ pokemonRepository.loadList().then(function () {
     pokemonRepository.getAll().forEach( function (pokemon) {
         pokemonRepository.addListItem(pokemon);
     });
-})
+});
 
 
 
