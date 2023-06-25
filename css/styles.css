@@ -90,3 +90,86 @@ Heading Text: Roboto Mono Bold 700
         margin: 5px 0;
         text-align: left;
     }
+
+/* Modal to showDetails */
+    .modal-container {
+        display: none;
+    }
+
+    .modal-container.is-visible {
+        position: fixed;
+        padding: 20px;
+        box-sizing: border-box;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+
+        z-index: 999;
+
+        overflow: auto;
+
+        display: grid;
+        text-align: center;
+    }
+
+    .modal {
+        margin: auto;
+        display: inline-block;
+        box-sizing: border-box;
+        background: rgba(255, 3, 3, 1);
+        border: 2px solid rgba(78, 110, 129, 1);
+        color: rgba(0, 0, 0, 0.5);
+        padding: 15px;
+        width: 100%;
+        max-width: 700px;
+        text-align: left;
+    }
+
+    .modal h1 {
+        margin-top: 0;
+    }
+
+    .modal p {
+        margin-bottom: 0;
+        font-family: 'Roboto Mono', monospace;
+        font-size: 16px;
+        font-weight: 400;
+        background-color: rgba(46, 56, 64, 1);
+        color: rgba(249, 219, 187, 1);
+        border: 2px solid rgba(78, 110, 129, 1);
+        width: auto;
+        height: auto;
+        padding: 5px 20px;
+        margin: 5px 0;
+    }
+
+    .modal-close {
+        float: right;
+        border: 0;
+        background: none;
+        color: rgba(249, 219, 187, 1);
+        text-decoration: underline;
+    }
+
+    .modal img {
+        float: right;
+        max-width: 200px;
+        max-height: 200px;
+        width: 100%;
+    }
+
+    @media screen and (max-width: 420px) {
+        .modal img {
+            max-width: 170px;
+            max-height: 170px;
+        }
+    }
+
+    @media screen and (max-width: 370px) {
+        .modal img {
+            max-width: 110px;
+            max-height: 110px;
+        }
+    }
