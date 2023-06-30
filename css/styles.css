@@ -92,6 +92,12 @@ Heading Text: Roboto Mono Bold 700
         text-align: left;
     }
 
+    .list-group-item {
+        background-color: rgba(0, 0, 0, 0);
+        padding: 0;
+        border: rgba(0, 0, 0, 0);
+    }
+
 /* Modal to showDetails */
     .modal-container {
         display: none;
