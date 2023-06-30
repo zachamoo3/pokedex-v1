@@ -194,10 +194,12 @@ let pokemonRepository = (function () { //wrapping the pokemonList inside of an I
         let button = document.createElement('button');
 
         button.innerText = `#${pokemon.id} ${pokemon.name.charAt(0).toUpperCase()}${pokemon.name.slice(1)}`;
-        button.classList.add('list-button');
+        $(button).addClass('list-button btn btn-primary');
         button.addEventListener('click', function () {
             showDetails(pokemon);
         })
+
+        $(listItem).addClass('list-group-item');
 
         listItem.appendChild(button);
         pokemonList.appendChild(listItem);
