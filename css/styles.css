@@ -46,6 +46,7 @@ Heading Text: Roboto Mono Bold 700
         display: flex;
         width: 95%;
         justify-content: space-between;
+        margin: 10px;
     }
 
     /* .pokedex__header--title {
@@ -115,6 +116,7 @@ Heading Text: Roboto Mono Bold 700
     }
 
     .modal {
+        position: relative;
         margin: auto;
         display: inline-block;
         box-sizing: border-box;
@@ -122,6 +124,7 @@ Heading Text: Roboto Mono Bold 700
         border: 2px solid rgba(78, 110, 129, 1);
         color: rgba(0, 0, 0, 0.5);
         padding: 15px;
+        height: auto;
         width: 100%;
         max-width: 700px;
         text-align: left;
