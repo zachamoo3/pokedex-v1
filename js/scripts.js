@@ -194,7 +194,7 @@ let pokemonRepository = (function () { //wrapping the pokemonList inside of an I
         let button = document.createElement('button');
 
         button.innerText = `#${pokemon.id} ${pokemon.name.charAt(0).toUpperCase()}${pokemon.name.slice(1)}`;
-        $(button).addClass('list-button btn btn-primary');
+        $(button).addClass('list-button btn btn-primary').attr('data-toggle', 'modal').attr('data-target','.modal-container');
         button.addEventListener('click', function () {
             showDetails(pokemon);
         })
