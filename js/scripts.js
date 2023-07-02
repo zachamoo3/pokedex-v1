@@ -122,16 +122,17 @@ let pokemonRepository = (function () { //wrapping the pokemonList inside of an I
             console.log(pokemon);
 
             let modalContainer = document.querySelector('.modal-container');
+            $(modalContainer).addClass('modal').html('');
 
-            modalContainer.innerHTML = '';
+            let modalDialog = document.createElement('div');
+            $(modalDialog).addClass('modal-dialog');
 
-            let modal = document.createElement('div');
-            modal.classList.add('modal');
+            let modalContent = document.createElement('div');
+            $(modalContent).addClass('modal-content');
 
             let closeButtonElement = document.createElement('button');
-            closeButtonElement.classList.add('modal-close');
-            closeButtonElement.innerText = 'Close';
-            closeButtonElement.addEventListener('click', hideDetails);
+            $(closeButtonElement).addClass('modal-close close').attr('data-dismiss','modal').text('Close');
+            closeButtonElement.addEventListener('click', hideDetails());
 
             let titleElement = document.createElement('h1');
             titleElement.innerText = `${pokemon.name.charAt(0).toUpperCase()}${pokemon.name.slice(1)} #${pokemon.id}`;
@@ -162,13 +163,12 @@ let pokemonRepository = (function () { //wrapping the pokemonList inside of an I
                 `;
             }
 
-            modal.appendChild(closeButtonElement);
-            modal.appendChild(titleElement);
-            modal.appendChild(spriteElement);
-            modal.appendChild(contentElement);
-            modalContainer.appendChild(modal);
-
-            modalContainer.classList.add('is-visible');
+            modalContent.appendChild(closeButtonElement);
+            modalContent.appendChild(titleElement);
+            modalContent.appendChild(spriteElement);
+            modalContent.appendChild(contentElement);
+            modalDialog.appendChild(modalContent);
+            modalContainer.appendChild(modalDialog);
 
             modalContainer.addEventListener('click', function (e) {
                 let target = e.target;
@@ -183,7 +183,7 @@ let pokemonRepository = (function () { //wrapping the pokemonList inside of an I
 
     function hideDetails() { //used to remove the modal displaying a pokemon's details
         let modalContainer = document.querySelector('.modal-container');
-        modalContainer.classList.remove('is-visible');
+        $(modalContainer).html('');
     }
 
 
