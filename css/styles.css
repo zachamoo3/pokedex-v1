@@ -41,26 +41,12 @@ Heading Text: Roboto Mono Bold 700
 
 
 
-/* Header Section Styles */
-    .pokedex__header {
+/* Navbar Section Styles */
+    .navbar {
         display: flex;
         width: 95%;
         justify-content: space-between;
         margin: 10px;
-    }
-
-    /* .pokedex__header--title {
-        
-    } */
-
-    .pokedex__header--search {
-        align-self: center;
-    }
-
-    .search-logo {
-        fill: rgba(78, 110, 129, 1);
-        width: 40px;
-        height: 40px;
     }
 
 
