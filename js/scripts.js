@@ -24,7 +24,7 @@ let pokemonRepository = (function () { //wrapping the pokemonList inside of an I
         let navItem = document.createElement('li');
         let link = document.createElement('button');
 
-        $(link).addClass('nav-link').text(`Gen. ${item.gen} Pok${'\xE9'}mon`)
+        $(link).addClass('nav-link btn btn-link').text(`Gen. ${item.gen} Pok${'\xE9'}mon`)
         .on('click', function() {
             changeApi(item);
         });

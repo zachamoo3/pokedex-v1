@@ -49,6 +49,29 @@ Heading Text: Roboto Mono Bold 700
         margin: 10px;
     }
 
+    .navbar-nav {
+        max-width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .nav-item {
+        display: inline;
+        width: 50%;
+    }
+
+    .nav-link {
+        font-family: 'Roboto Mono', monospace;
+        font-size: 16px;
+        font-weight: 700;
+        text-align: left;
+        transition: font-size 500ms;
+    }
+
+    .nav-link:hover {
+        font-size: 17px;
+    }
+
 
 
 /* Main Section Styles */
