@@ -187,7 +187,7 @@ let pokemonRepository = (function () { //wrapping the pokemonList inside of an I
             console.log(pokemon);
 
             let modalContainer = document.querySelector('.modal-container');
-            $(modalContainer).addClass('modal show').attr('aria-labelledby', 'Pokemon details').attr('aria-hidden', 'true')
+            $(modalContainer).addClass('modal fade show').attr('aria-labelledby', 'Pokemon details').attr('aria-hidden', 'true')
                 .attr('role', 'dialog').attr('aria-modal', 'true').attr('style', 'display: block;').html('');
 
             let modalDialog = document.createElement('div');
@@ -257,7 +257,8 @@ let pokemonRepository = (function () { //wrapping the pokemonList inside of an I
 
     function hideDetails() { //used to remove the modal displaying a pokemon's details
         let modalContainer = document.querySelector('.modal-container');
-        $(modalContainer).html('');
+        $(modalContainer).removeClass('modal fade').removeAttr('aria-labelledby').removeAttr('aria-hidden')
+            .removeAttr('role').removeAttr('style');
 
         let modalBackdrop = document.querySelector('.modal-backdrop');
         $(modalBackdrop).remove();
