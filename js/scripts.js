@@ -194,8 +194,11 @@ let pokemonRepository = (function () { //wrapping the pokemonList inside of an I
             $(modalContent).addClass('modal-content');
 
             let closeButtonElement = document.createElement('button');
-            $(closeButtonElement).addClass('modal-close close').attr('data-dismiss', 'modal').attr('aria-label', 'close');
-            closeButtonElement.addEventListener('click', hideDetails());
+            $(closeButtonElement).addClass('modal-close close').attr('data-dismiss', 'modal').attr('aria-label', 'close')
+            .on('click', function () {
+                hideDetails()
+                $(modalContainer).removeClass('show').removeAttr('aria-modal').attr('style', 'display: none;');
+            });
 
             let ariaSpan = document.createElement('span');
             $(ariaSpan).attr('aria-hidden', 'true').text('Close');
@@ -251,6 +254,8 @@ let pokemonRepository = (function () { //wrapping the pokemonList inside of an I
     function hideDetails() { //used to remove the modal displaying a pokemon's details
         let modalContainer = document.querySelector('.modal-container');
         $(modalContainer).html('');
+        let modalBackdrop = document.querySelector('.modal-backdrop');
+        $(modalBackdrop).remove();
     }
 
 
@@ -276,7 +281,7 @@ let pokemonRepository = (function () { //wrapping the pokemonList inside of an I
 
     window.addEventListener('keydown', function (e) {
         let modalContainer = document.querySelector('.modal-container');
-        if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+        if (e.key === 'Escape' && modalContainer.classList.contains('show')) {
             hideDetails();
         }
     })
