@@ -181,11 +181,14 @@ let pokemonRepository = (function () { //wrapping the pokemonList inside of an I
 
     function showDetails(pokemon) { //used to display a modal with a pokemon's details
         loadDetails(pokemon).then(function () {
+            let body = document.querySelector('body');
+            $(body).addClass('modal-open')
+
             console.log(pokemon);
 
             let modalContainer = document.querySelector('.modal-container');
-            $(modalContainer).addClass('modal').attr('aria-labelledby', 'Pokemon details').attr('aria-hidden', 'true')
-            .attr('role', 'dialog').html('');
+            $(modalContainer).addClass('modal show').attr('aria-labelledby', 'Pokemon details').attr('aria-hidden', 'true')
+                .attr('role', 'dialog').attr('aria-modal', 'true').attr('style', 'display: block;').html('');
 
             let modalDialog = document.createElement('div');
             $(modalDialog).attr('role', 'document').addClass('modal-dialog');
@@ -194,11 +197,12 @@ let pokemonRepository = (function () { //wrapping the pokemonList inside of an I
             $(modalContent).addClass('modal-content');
 
             let closeButtonElement = document.createElement('button');
-            $(closeButtonElement).addClass('modal-close close').attr('data-dismiss', 'modal').attr('aria-label', 'close')
-            .on('click', function () {
-                hideDetails()
-                $(modalContainer).removeClass('show').removeAttr('aria-modal').attr('style', 'display: none;');
-            });
+            $(closeButtonElement).addClass('modal-close close').attr('data-dismiss', 'modal')
+                .attr('aria-label', 'close').attr('type', 'button')
+                .on('click', function () {
+                    hideDetails()
+                    $(modalContainer).removeClass('show').removeAttr('aria-modal').attr('style', 'display: none;');
+                });
 
             let ariaSpan = document.createElement('span');
             $(ariaSpan).attr('aria-hidden', 'true').text('Close');
@@ -254,8 +258,12 @@ let pokemonRepository = (function () { //wrapping the pokemonList inside of an I
     function hideDetails() { //used to remove the modal displaying a pokemon's details
         let modalContainer = document.querySelector('.modal-container');
         $(modalContainer).html('');
+
         let modalBackdrop = document.querySelector('.modal-backdrop');
         $(modalBackdrop).remove();
+
+        let body = document.querySelector('body');
+        $(body).removeAttr('class');
     }
 
 
@@ -266,7 +274,8 @@ let pokemonRepository = (function () { //wrapping the pokemonList inside of an I
         let button = document.createElement('button');
 
         button.innerText = `#${pokemon.id} ${pokemon.name.charAt(0).toUpperCase()}${pokemon.name.slice(1)}`;
-        $(button).addClass('list-button btn btn-primary').attr('data-toggle', 'modal').attr('data-target', '.modal-container');
+        $(button).addClass('list-button btn btn-primary').attr('type', 'button')
+            .attr('data-toggle', 'modal').attr('data-target', '.modal-container');
         button.addEventListener('click', function () {
             showDetails(pokemon);
         })
